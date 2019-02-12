@@ -6,12 +6,12 @@
   "short_name": "stock-monitor",
   "name": "stock-monitor",
   "icons": {
-    "16": "logo-small.png",
-    "48": "logo-small.png",
-    "128": "logo-small.png"
+    "16": "icons/logo-small.png",
+    "48": "icons/logo-small.png",
+    "128": "icons/logo-small.png"
   },
   "browser_action": {
-    "default_popup": "../src/index.html",
+    "default_popup": "index.html",
     "default_title": "stock"
   },
   "permissions": [
