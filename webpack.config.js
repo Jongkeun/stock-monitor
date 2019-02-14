@@ -1,10 +1,15 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 const path =  require('path');
 
 module.exports = {
   entry: {
     app: ['./src']
+  },
+  //To automate import index.jsx when call "import ... from ..."
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
   },
   module: {
     rules: [
@@ -34,14 +39,25 @@ module.exports = {
             },
           }
         ],
-        // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
     ]
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
     }),
     new CopyWebpackPlugin([
       { from: 'src/icons', to: 'icons' },
