@@ -19,6 +19,7 @@ class FormContainer extends Component {
     return (
       <form className="article-form">
         <Input
+          id="seo_title"
           text="SEO title"
           label="seo_title"
           type="text"

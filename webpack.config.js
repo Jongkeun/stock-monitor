@@ -5,7 +5,8 @@ const path =  require('path');
 
 module.exports = {
   entry: {
-    app: ['./src']
+    app: ['./src'],
+    background: ['./background/background']
   },
   //To automate import index.jsx when call "import ... from ..."
   resolve: {
