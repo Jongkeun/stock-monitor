@@ -66,6 +66,10 @@ module.exports = {
       { from: 'src/manifest.json', to: './' },
     ]),
   ],
+  // remove size warning
+  performance: {
+    hints: false
+  },
   output: {
     path: path.resolve(__dirname, 'build/'),
     filename: '[name].js',
