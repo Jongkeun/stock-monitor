@@ -10,6 +10,7 @@ module.exports = {
   },
   //To automate import index.jsx when call "import ... from ..."
   resolve: {
+    modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.json'],
   },
   module: {
