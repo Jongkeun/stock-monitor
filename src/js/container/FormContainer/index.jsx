@@ -15,7 +15,7 @@ class FormContainer extends Component {
   }
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
-    getContent().then((content)=> {this.setState({ price: content });});
+    getContent(event.target.value).then((content)=> {this.setState({ price: content });});
   }
   render() {
     const { seo_title, price } = this.state;
