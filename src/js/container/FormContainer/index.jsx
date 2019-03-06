@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import Input from "../../components/Input";
+import SearchInput from "../../components/SearchInput";
+import PriceRow from "../../components/PriceRow";
 import './style.css'
 import { getContent } from "../../utils/scraper"
 
@@ -16,7 +17,6 @@ class FormContainer extends Component {
   }
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
-    //getContent(event.target.value).then((content)=> {this.setState({ price: content });});
   }
 
   onSubmit(event) {
@@ -30,8 +30,8 @@ class FormContainer extends Component {
     const { seo_title, price } = this.state;
     return (
       <div>
-        <form className="article-form"  onSubmit={this.onSubmit}>
-          <Input
+        <form className="article-form">
+          <SearchInput
             id="seo_title"
             text="SEO title"
             label="seo_title"
@@ -40,10 +40,9 @@ class FormContainer extends Component {
             value={seo_title}
             handleChange={this.handleChange}
           />
+          <input tabIndex="-1" type="submit" onClick={this.onSubmit} />
         </form>
-        <lable>
-            {price}
-        </lable>
+        <PriceRow price={price}/>
       </div>
 
     );

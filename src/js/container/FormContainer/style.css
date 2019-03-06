@@ -2,5 +2,5 @@
   display: flex;
   flex-direction: column;
   height: stretch;
-  width: 500px;
+  width: 100%;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class Input extends Component {
+class SearchInput extends Component {
   constructor(props) {
     super(props)
   }
@@ -21,7 +21,7 @@ class Input extends Component {
   };
 }
 
-Input.propTypes = {
+SearchInput.propTypes = {
   label: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -30,4 +30,4 @@ Input.propTypes = {
   handleChange: PropTypes.func.isRequired
 };
 
-export default Input;
+export default SearchInput;
