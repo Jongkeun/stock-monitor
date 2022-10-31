@@ -84,9 +84,9 @@ jobs:
         id: versions
         run: |
           if [ ${{ github.event.inputs.native_version }} != 'admob' ]; then
-          echo ::set-output name=TARGET_ENV::${{ github.event.inputs.native_version }}
+          echo "TARGET_ENV=${{ github.event.inputs.native_version }}" >> $GITHUB_OUTPUT
           else
-          echo ::set-output name=TARGET_ENV::6.0.0
+          echo "TARGET_ENV=6.0.0" >> $GITHUB_OUTPUT
           fi
       
       - name: echo contents
