@@ -13,7 +13,7 @@ on:
           - "5.0.0"
           - "4.0.0"
           - "3.0.0"
-          - "admob(current version)"
+          - "admob"
 
       platform:
         description: Platform OS
@@ -83,7 +83,7 @@ jobs:
       - name: set outputs
         id: versions
         run: |
-          if [ ${{ github.ref }} != 'refs/heads/main' ]; then
+          if [ ${{ github.event.inputs.native_version }} != 'admob' ]; then
           echo ::set-output name=TARGET_ENV::${{ github.event.inputs.native_version }}
           else
           echo ::set-output name=TARGET_ENV::6.0.0
