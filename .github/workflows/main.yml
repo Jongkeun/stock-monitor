@@ -1,0 +1,95 @@
+name: Jongkeun test
+
+on:
+  workflow_dispatch:
+    inputs:
+      native_version:
+        description: Native version
+        required: true
+        type: choice
+        default: "6.0.0"
+        options:
+          - "6.0.0"
+          - "5.0.0"
+          - "4.0.0"
+          - "3.0.0"
+          - "admob(current version)"
+
+      platform:
+        description: Platform OS
+        required: true
+        default: "both"
+        type: choice
+        options:
+          - ios
+          - android
+          - both
+
+      mandatory:
+        type: boolean
+        description: Mandatory update
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SERVICE: react-native
+      APPCENTER_ACCESS_TOKEN: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      TARGET_BINARY_VERSION: ^${{ github.event.inputs.native_version }}
+    
+
+    steps:
+      #
+      # Configuration for 3.0.0
+      #
+      - uses: actions/checkout@v2
+        if: ${{ github.event.inputs.native_version == '3.0.0' }}
+        with:
+          ref: native-3.0
+
+      #
+      # Configuration for 4.0.0
+      #
+      - uses: actions/checkout@v2
+        if: ${{ github.event.inputs.native_version == '4.0.0' }}
+        with:
+          ref: native-4.0
+
+      #
+      # Configuration for 5.0.0
+      #
+      - uses: actions/checkout@v2
+        if: ${{ github.event.inputs.native_version == '5.0.0' }}
+        with:
+          ref: native-5.0
+
+      #
+      # Configuration for 6.0.0
+      #
+      - uses: actions/checkout@v2
+        if: ${{ github.event.inputs.native_version == '6.0.0' }}
+        with:
+          ref: master
+
+      #
+      # Configuration for admmob
+      #
+      - uses: actions/checkout@v2
+        if: ${{ github.event.inputs.native_version == 'admob' }}        
+        with:
+          ref: admob
+          
+      - name: set outputs
+        id: versions
+        run: |
+          if [ ${{ github.ref }} != 'refs/heads/main' ]; then
+          echo ::set-output name=TARGET_ENV::${{ github.event.inputs.native_version }}
+          else
+          echo ::set-output name=TARGET_ENV::6.0.0
+          fi
+      
+      - name: echo contents
+        run: |
+          echo ${{ steps.versions.outputs.TARGET_ENV }}
+     
